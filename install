@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ ! -d "$HOME/Library/Preferences" ]; then
+    mkdir "$HOME/Library/Preferences"
+fi
+cp org.afraid.dyndns.preferences.plist "$HOME/Library/Preferences/org.afraid.dyndns.plist"
+
+if [ ! -d "$HOME/Library/Application Support" ]; then
+    mkdir "$HOME/Library/Application Support"
+fi
+
+if [ ! -d "$HOME/Library/Application Support/DynDns" ]; then
+    mkdir "$HOME/Library/Application Support/DynDns"
+fi
+cp DynDns.plist "$HOME/Library/Application Support/DynDns/DynDns.plist"
+
+if [ ! -d "$HOME/Library/LaunchAgents" ]; then
+    mkdir "$HOME/Library/LaunchAgents"
+fi
+cp org.afraid.dyndns.daemon.plist "$HOME/Library/LaunchAgents/org.afraid.dyndns.plist" 
+launchctl load "$HOME/Library/LaunchAgents/org.afraid.dyndns.plist"

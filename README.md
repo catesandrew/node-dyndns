@@ -1,0 +1,95 @@
+CONFIGURATION
+-------------
+
+   To configure, edit the /etc/dyndns.conf file.  The AccountHash
+   field refers to the SHA value assigned to your afraid.org account.
+   To get it, log into afraid.org and visit:
+
+	   http://freedns.afraid.org/api/
+
+   then click on either of your "ChoOsE YoUr WeApOn" links and take
+   the value of the "sha" parameter (it's a long string). The Notify
+   address (if present) will be sent e-mail whenever the DNS is
+   refreshed.
+
+
+SYNOPSIS
+
+    This utility implements a client for the afraid.org dynamic DNS service.
+    A cron job is set up to check whether the external IP address has
+    changed, and when it does, connects to afraid.org and updates the
+    DNS entries of all the domains of the given account.
+
+SUPPORTED OPERATING SYSTEMS
+
+   * OSX
+
+INSTALL
+
+    1. log in as root (needed to access config, cron and cache directories):
+        # su -
+    2. Download the tarball:
+	    # cd /tmp
+	    # wget ftp://arix.com/afraid-dyndns-x.x.tar.gz
+
+	    on OSX, you can use:
+        # curl -O ftp://anon@arix.com/afraid-dyndns-x.x.tar.gz
+    3. Untar:
+	    # tar xzvf afraid-dyndns-x.x.tgz
+    4. Install:
+	    # cd afraid-dyndns-x.x
+	    # ./install
+
+CONFIGURATION
+
+   To configure, edit the /etc/afraid-dyndns.conf file. The AccountHash field
+   is a string value that is unique to your account with afraid.org. Currently,
+   (03/17/2012) this value can be obtained by SHA-1 hashing the string
+   "username|password" (without quotes). Your username and password can be found
+   at:
+
+       http://freedns.afraid.org/profile/
+
+   This may change in the future; up-to-date information can be found at:
+
+	   http://freedns.afraid.org/api/
+
+   CacheFile is the file name where the external IP address will be cached.
+   Each time your IP address changes, the administrator (as specified by the
+   "Notify" field in the configuration file) will be emailed with an update.
+
+   In order for this utility to properly cache your external IP address, it must
+   be run as root. The cron job that is installed with this utility should cause
+   the utility to be run as root. If this utility is run as a non-root user, the
+   cache will not be written to; consequesntly, the administrator may be emailed
+   with unnecessary updates (assuming that a "Notify" email address has been
+   specified in the configuration file). Otherwise, the utility should work.
+
+   The cron job provided will cause the external IP address to be checked every
+   15 minutes. To edit the rate of updates, edit /etc/cron.d/afraid-dyndns. On
+   OSX, you should instead edit /Library/LaunchDaemons/org.afraid.dyndns.plist
+   (and reboot).
+
+   Unlink on Linux systems where all names on the account are refreshed with
+   the IP of the host, on OSX the default configuration only names matching
+   the host's name will be refreshed. The assumption here is that Linux
+   hosts are likely to be used as servers (which may require multiple names
+   as in the case of a webserver hosting multiple domains), whereas OSX
+   hosts are likely to be used as clients e.g. laptops which we want
+   accessible via a domain name but which roam.
+
+	To change this behaviour on OSX, edit the plist, take out the
+    hostname parameter (after the --quiet) and reboot.
+
+SYNTAX
+
+   Call the script with --help to see all options.
+
+LIMITATIONS
+
+   At present, only one account is supported.
+
+AUTHOR/SUPPORT
+
+   Erick Calder <e@arix.com> - For bugs, suggestions, etc. please
+   feel free to contact me.

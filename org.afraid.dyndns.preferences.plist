@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+ <dict>
+  <key>AccountHash</key>
+  <string>sha-1 of 'username|password'</string>
+  <key>AdminEmail</key>
+  <string>user email</string>
+  <key>Host</key>
+  <string>host.domain.com</string>
+  <key>CheckDelay</key>
+  <integer>10</integer>
+  <key>IsEnabled</key>
+  <true/>
+  <key>ScriptVersion</key>
+  <string>100</string>
+ </dict>
+</plist>
+

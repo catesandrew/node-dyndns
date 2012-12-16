@@ -1,0 +1,22 @@
+{
+  "name": "node-dyndns",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.14",
+    "npm":  "1.1.65"
+  },
+  "scripts": {
+    "preinstall": "rm -Rf node_modules/node.io/vendor",
+    "postinstall": "mkdir node_modules/node.io/vendor; mv node_modules/soupselect node_modules/node.io/vendor/; mv node_modules/validator node_modules/node.io/vendor/"
+  },
+  "dependencies": {
+    "async": "latest",
+    "node.io": "git://github.com/catesandrew/node.io.git",
+    "soupselect": "git://github.com/harryf/node-soupselect.git#2de2537",
+    "validator": "git://github.com/chriso/node-validator.git#9b34de1",
+    "plist": "git://github.com/catesandrew/node-plist.git",
+    "underscore": "latest",
+    "commander": "latest",
+    "progress": "latest"
+  }
+}
